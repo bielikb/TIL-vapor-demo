@@ -12,9 +12,9 @@ public func routes(_ router: Router) throws {
         return "Hello, world!"
     }
 
-    // Example of configuring a controller
-    let todoController = TodoController()
-    router.get("todos", use: todoController.index)
-    router.post("todos", use: todoController.create)
-    router.delete("todos", Todo.parameter, use: todoController.delete)
+    router.post("api", "acronyms") { (request) -> Future<Acronym> in
+        return try request.content.decode(Acronym.self).flatMap(to: Acronym.self, { (acronym) in
+            return acronym.save(on: request)
+        })
+    }
 }
