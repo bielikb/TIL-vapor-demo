@@ -12,6 +12,8 @@ final class Acronym: Codable {
     }
 }
 
+extension Acronym: Parameter {}
+
 extension Acronym: PostgreSQLModel {
 }
 
